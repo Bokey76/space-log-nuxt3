@@ -1,0 +1,95 @@
+services:
+  nuxt3-dev:
+    build: .
+    env_file:
+      - .env.dev
+    ports:
+      - "${DEV_PORT}:${DEV_PORT}"
+    environment:
+      NODE_ENV: dev
+      NUXT_HOST: 0.0.0.0
+    volumes:
+      - ./app:/app   # 开发挂载代码，实现热更新
+      - /app/node_modules
+    restart: unless-stopped
+    command: sh -c "rm -f /tmp/nitro/*.sock && npm run serve:dev"
+  
+  nuxt3-beta-run:
+    build:
+      context: .
+      args:
+        NUXT_ENV: beta
+        SKIP_BUILD: true
+    container_name: spaceP-nuxt3-beta-run
+    env_file:
+      - .env.beta
+    ports:
+      - "${BETA_PORT}:${BETA_PORT}"
+    environment:
+      NODE_ENV: beta
+      NUXT_HOST: 0.0.0.0
+    volumes:
+      - ./app:/app   # 开发挂载代码，实现热更新
+      - /app/node_modules
+    restart: unless-stopped
+    command: sh -c "rm -f /tmp/nitro/*.sock && npm run serve:beta"
+
+  nuxt3-beta:
+    build:
+      context: .
+      args:
+        NUXT_ENV: beta
+        SKIP_BUILD: false
+    container_name: spaceP-nuxt3-beta
+    env_file:
+      - .env.beta
+    ports:
+      - "${BETA_PORT}:${BETA_PORT}"
+    volumes:
+      - ./logs/beta:/app/logs
+    environment:
+      NODE_ENV: beta
+      NUXT_HOST: 0.0.0.0
+      NODE_PORT: ${BETA_PORT}
+    restart: unless-stopped
+    command: ["pm2-runtime", "ecosystem.config.cjs", "--env", "beta","--update-env"]
+
+  nuxt3-pro-run:
+    build:
+      context: .
+      args:
+        NUXT_ENV: pro
+        SKIP_BUILD: true
+    container_name: spaceP-nuxt3-pro-run
+    env_file:
+      - .env.pro
+    ports:
+      - "${PRO_PORT}:${PRO_PORT}"
+    environment:
+      NODE_ENV: pro
+      NUXT_HOST: 0.0.0.0
+    volumes:
+      - ./app:/app   # 开发挂载代码，实现热更新
+      - /app/node_modules
+    restart: unless-stopped
+    command: sh -c "rm -f /tmp/nitro/*.sock && npm run serve:pro"
+
+  nuxt3-pro:
+    build:
+      context: .
+      args:
+        NUXT_ENV: pro
+        SKIP_BUILD: false
+    container_name: spaceP-nuxt3-pro
+    env_file:
+      - .env.pro
+    ports:
+      - "${PRO_PORT}:${PRO_PORT}"
+    volumes:
+      - ./logs/pro:/app/logs
+    environment:
+      NODE_ENV: pro
+      NUXT_HOST: 0.0.0.0
+      NODE_PORT: ${PRO_PORT}
+    restart: unless-stopped
+    command: ["pm2-runtime", "ecosystem.config.cjs", "--env", "pro","--update-env"]

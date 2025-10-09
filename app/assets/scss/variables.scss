@@ -1,0 +1,24 @@
+/* 全局变量 */
+// --文本色--
+$main-text-color: var(--main-text-color,#ffffff); // 主要文本颜色 白 #333333 黑 #ffffff
+$secondary-text-color: var(--secondary-text-color,#cccccc); // 次要文本颜色 白 #777777 黑 #cccccc
+// --背景色--
+$main-background-color: var(--main-background-color,#0e0e0e); // 白 #fafafa 黑 #0e0e0e
+$main-car-color: var(--main-car-color,#161616); // 白 #ffffff 黑 #161616
+$secondary-car-color: var(--secondary-car-color,#181818); // 白 #fcfcfc 黑 #181818
+// --文本粗--
+$large-font-weight: var(--large-font-weight,900); // 主要文本粗细
+$medium-font-weight: var(--secondary-font-weight,400); // 次要文本粗细
+$small-font-weight: var(--secondary-font-weight,100); // 次要文本粗细
+// --文本大小--
+$x-large-font-size: var(--x-large-font-size,5rem); // 主要文本粗细
+$large-font-size: var(--large-font-size,4rem); // 次要文本粗细
+$medium-font-size: var(--medium-font-size,3rem); // 次要文本粗细
+$small-font-size: var(--small-font-size,2.5rem); // 次要文本粗细
+$x-small-font-size: var(--x-small-font-size,2rem); // 次要文本粗细
+$xx-small-font-size: var(--x-small-font-size,1.5rem); // 次要文本粗细
+// --交互--
+$main-color: var(--success-color,#0085ff); // 主色 白 #FF6600 黑 #0085ff
+$secondary-color: var(--info-color,#71c4ef); // 副色 白 #ff983f 黑 #71c4ef
+// --鼠标--
+$hover-cursor: var(--hover-cursor,(url(../cursor/hoverCursor.cur),pointer));

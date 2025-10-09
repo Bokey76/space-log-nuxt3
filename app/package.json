@@ -1,0 +1,33 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:beta": "cross-env NUXT_PUBLIC_ENV=beta nuxt build ",
+    "build:pro": "cross-env NUXT_PUBLIC_ENV=pro nuxt build ",
+    "serve:dev": "cross-env NUXT_PUBLIC_ENV=dev nuxt dev",
+    "serve:beta": "cross-env NUXT_PUBLIC_ENV=beta nuxt dev",
+    "serve:pro": "cross-env NUXT_PUBLIC_ENV=pro nuxt dev"
+  },
+  "dependencies": {
+    "@ant-design-vue/nuxt": "^1.4.2",
+    "@nuxtjs/robots": "^5.5.5",
+    "@nuxtjs/sitemap": "^7.4.7",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@pinia/nuxt": "^0.5.1",
+    "@vavt/v3-extension": "^1.2.4",
+    "@vueuse/motion": "^2.2.6",
+    "md-editor-v3": "^4.21.3",
+    "node-fetch": "^2.7.0",
+    "nuxt": "^3.12.3",
+    "pinia": "^2.1.7",
+    "pinia-plugin-persist": "^1.0.0",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.2.3",
+    "sass": "^1.77.8",
+    "sass-loader": "^14.2.1"
+  }
+}

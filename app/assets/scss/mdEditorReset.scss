@@ -1,0 +1,141 @@
+// --md编辑器--
+// 编辑器
+.md-editor {
+    background-color: $main-car-color !important;
+    --md-color: $main-text-color !important;
+    font-family: 'MyCustomFont', sans-serif !important;
+
+    // reset
+    h1 {
+        font-size: $x-large-font-size;
+    }
+    h2 {
+        font-size: $large-font-size;
+    }
+    h3 {
+        font-size: $medium-font-size;
+    }
+    h4 {
+        font-size: $x-small-font-size;
+    }
+    h5 {
+        font-size: $xx-small-font-size;
+    }
+    span,th,td,li {
+        font-size: $x-small-font-size;
+    }
+    li {
+        list-style: disc;
+    }
+}
+// 代码块
+.md-editor-preview details.md-editor-code .md-editor-code-head {
+    cursor: $hover-cursor !important;
+}
+.md-editor-preview .md-editor-code .md-editor-code-head { // 代码块标题
+    background-color: $main-background-color !important;
+}
+.md-editor-preview .md-editor-code pre code { // 代码块内容
+    background-color: $main-background-color !important;
+}
+// --目录--
+.md-editor-catalog-active > span {
+    transition: all .5s !important;
+}
+.md-editor-catalog-active > span,
+.md-editor-catalog-link >span:hover {
+    color: $main-color !important;
+    font-size: $small-font-size;
+    font-weight: $large-font-weight;
+}
+// 图片
+.md-editor-preview figure {
+    display: block !important;
+}
+// 引用
+.md-editor-preview blockquote {
+    background-color: $main-car-color !important;
+}
+// 表格
+div.default-theme table tbody tr:hover,
+.md-editor-preview table tr:nth-child(2n) {
+    background-color: $main-car-color !important;
+}
+// md其他表图（流程图，时序图...）
+.md-editor-mermaid {
+    background-color: #fff !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 2rem !important;
+    border-radius: 20px;
+}
+#preview-preview {
+    img {
+        max-height: 50vh;
+    }
+}
+// 编辑器
+.md-editor .ͼ1 .cm-scroller {
+    background-color: $main-background-color;
+}
+.md-editor-resize-operate {
+    background-color: $main-car-color;
+}
+
+// 表情工具
+.emoji-container .emojis {
+    width: 80rem;
+    max-height: 20rem;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    li {
+        height: 5rem;
+        width: 5rem;
+        line-height: 5rem;
+        margin: 0;
+        padding: 0;
+        font-size: 2.5rem;
+    }
+    
+}
+@media (max-width:1024px) {
+    .emoji-container .emojis {
+        width: 40rem;
+    }
+}
+
+// 工具栏icon
+.md-editor-toolbar-item {
+
+    .md-editor-icon {
+        height: 5rem ;
+        width: 3rem ;
+        line-height: 5rem;
+    }
+
+    .anticon {
+        color: currentColor;
+    }
+}
+
+.md-editor-dropdown-hidden {
+    display: none;
+}
+
+.icon-mee-emoji {
+    height: 5rem;
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.md-editor li {
+    font-size: medium;
+}

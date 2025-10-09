@@ -1,0 +1,378 @@
+// 按钮
+.ant-btn {
+    cursor: $hover-cursor;
+    color: $main-text-color;
+}
+.ant-btn-text:not(:disabled):hover {
+    background-color:$main-background-color;
+    color: $main-text-color;
+}
+.ant-btn-default {
+    background-color: $main-car-color;
+    color: $main-text-color;
+}
+.ant-btn-default:hover {
+    background-color: $main-text-color !important;
+    color: $main-car-color !important;
+}
+.ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary),
+.ant-input::placeholder,.ant-btn-default.ant-btn-background-ghost {
+    color: $main-text-color;
+}
+.ant-btn-primary {
+    color: $main-background-color;
+    background-color: $main-text-color;
+}
+.ant-btn-primary:not(:disabled):hover {
+    color: $main-background-color;
+    background-color: $main-color;
+}
+.ant-btn-default:disabled {
+    background-color: $main-background-color;
+    color:$secondary-text-color
+}
+.ant-input-group {
+    .ant-input-group-addon {
+        color: $main-text-color;
+    }
+    .ant-input-group-addon {
+        background-color: $secondary-car-color;
+    }
+}
+
+// 输入框(带search按钮)
+.ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary):hover {
+    color: $main-text-color;
+}
+.ant-btn-default:not(:disabled):hover ,.ant-input-search .ant-input:hover,.ant-input-search .ant-input:focus{
+    border-color: $main-text-color;
+}
+.ant-input-search .ant-input:hover +.ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary), :where(.css-dev-only-do-not-override-19iuou).ant-input-search .ant-input:focus +.ant-input-group-addon .ant-input-search-button:not(.ant-btn-primary) {
+    border-inline-start-color: $main-text-color;
+}
+
+// 输入框
+.ant-input {
+    background-color: $main-car-color;
+    color: $main-text-color;
+    &::placeholder {
+        color:  $secondary-text-color;
+    }
+}
+.ant-input-number .ant-input-number-input {
+    color: $main-text-color;
+}
+// 普通输入框
+.ant-input:focus,.ant-input:hover {
+    border-color: $main-text-color;
+}
+
+// 分段控制器
+.ant-segmented .ant-segmented-item {
+    cursor: $hover-cursor;
+}
+
+// a标签
+a {
+    color: $main-text-color;
+}
+a:hover {
+    color: $main-text-color;
+    cursor: $hover-cursor;
+}
+
+// card卡片
+.ant-card {
+    background-color: $main-car-color;
+    font-family: 'MyCustomFont', sans-serif;
+}
+.ant-card-bordered {
+    border: none;
+}
+.ant-card-hoverable {
+    cursor: $hover-cursor;
+}
+
+// icon
+.anticon[tabindex] {
+    cursor: $hover-cursor;
+}
+
+// 分段控制器
+.ant-segmented {
+    background-color: $main-background-color;
+    color: $main-text-color;
+}
+.ant-segmented .ant-segmented-item:hover:not(.ant-segmented-item-selected):not(.ant-segmented-item-disabled) {
+    color: $secondary-text-color;
+}
+.ant-segmented .ant-segmented-item-selected {
+    background-color: $main-car-color;
+    color: $main-text-color;
+}
+
+// notification 通知提醒框
+.ant-notification-notice {
+    background-color: $main-background-color;
+    color: $main-text-color;
+    border: .5px solid $main-text-color;
+}
+.ant-notification-notice .ant-notification-notice-message {
+    color: $main-text-color;
+}
+.ant-notification-notice .ant-notification-notice-close {
+    color: $main-text-color;
+}
+
+// tooltip 文本提示
+.ant-tooltip {
+    max-width: none;
+    .ant-tooltip-inner {
+        background-color: $main-background-color;
+        color: $main-text-color;
+        border: .5px solid $main-text-color;
+        font-size: $x-small-font-size;
+    }
+}
+.ant-tooltip .ant-tooltip-arrow::after, .ant-tooltip .ant-tooltip-arrow::before { // 箭头
+    background-color: $main-text-color !important;
+}
+
+// timeline 时间线
+.ant-timeline {
+    color: $main-text-color;
+    width: 100%;
+}
+.ant-timeline .ant-timeline-item-tail {
+    border-inline-start: 2px solid $main-text-color;
+}
+.ant-timeline.ant-timeline-reverse .ant-timeline-item-pending .ant-timeline-item-tail {
+    border-inline-start: 2px dotted $main-text-color;
+}
+.ant-timeline .ant-timeline-item-head-blue {
+    color: $main-text-color;
+    border-color: $main-text-color;
+}
+.ant-timeline .ant-timeline-item-head {
+    background-color: $main-car-color;
+}
+.ant-timeline .ant-timeline-item {
+    padding-bottom: 10rem;
+}
+
+// 气泡提示框
+.ant-popover .ant-popover-inner {
+    background-color: $main-car-color;
+    border: 2px solid $main-text-color;
+}
+.ant-popover .ant-popover-title,.ant-popover .ant-popover-inner-content {
+    color: $main-text-color;
+    font-size: $small-font-size;
+}
+.ant-popover .ant-popover-arrow::after,.ant-popover .ant-popover-arrow::before { // 箭头
+    background-color: $main-text-color !important;
+}
+.ant-popover .ant-popover-title {
+    text-align: center;
+}
+
+// modal对话框
+.ant-modal .ant-modal-content,.ant-modal .ant-modal-header {
+    background-color: $main-car-color;
+}
+.ant-modal-confirm .ant-modal-confirm-body .ant-modal-confirm-title,
+.ant-modal-confirm .ant-modal-confirm-body .ant-modal-confirm-content,
+.ant-modal .ant-modal-title {
+    color: $main-text-color;
+}
+.ant-modal-confirm-btns .ant-btn-default:hover {
+    background-color: $main-car-color !important;
+    color: $main-text-color !important;
+}
+.ant-modal-close {
+    .anticon {
+        color: $main-text-color;
+    }
+}
+.ant-modal {
+    color: $main-text-color;
+    .ant-modal-close-x {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+// comment
+.ant-comment {
+    font-family: "MyCustomFont", sans-serif;
+    .ant-comment-content-author-name >* {
+        color: $main-text-color;
+
+        &:hover {
+            color: $secondary-text-color;
+        }
+    }
+    .ant-comment-content-author-time {
+        color: $secondary-text-color;
+    }
+    .ant-comment-avatar {
+        cursor: $hover-cursor;
+    }
+}
+.ant-comment-actions {
+    li {
+        width: 100%;
+    }
+}
+
+// divider
+.ant-divider-horizontal.ant-divider-with-text {
+    color: $main-text-color;
+}
+.ant-divider-horizontal.ant-divider-with-text::before,
+ .ant-divider-horizontal.ant-divider-with-text::after {
+    border-block-start-color: $secondary-text-color ;
+}
+
+// qrcode
+.ant-qrcode {
+    background-color: #fff !important;
+}
+
+// upload wrapper
+.ant-upload-wrapper .ant-upload-list .ant-upload-list-item {
+    color: $secondary-text-color;
+    .ant-upload-list-item-actions {
+
+        .ant-upload-list-item-action {
+            opacity: 1;
+            .anticon {
+                color: $secondary-text-color;
+            }
+        }
+        &:hover {
+            .anticon {
+                color: $secondary-text-color;
+            }
+        }
+    }
+}
+
+// image
+.ant-image .ant-image-mask {
+    cursor: $hover-cursor;
+}
+
+// radio wrapper
+.ant-radio-button-wrapper {
+    color: $main-text-color;
+    background: $main-background-color;
+
+    &:hover {
+        color: $main-background-color;
+        background-color: $main-text-color;
+    }
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    background: $main-background-color;
+    &::before,&:hover::before  {
+        background-color: rgba(0,0,0,0);
+    }
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+    border-color: $main-text-color;
+    color: $main-text-color;
+}
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    color: $main-text-color;
+    border-color: $main-text-color;
+}
+
+
+// dropdown
+.ant-dropdown .ant-dropdown-menu .ant-dropdown-menu-item {
+    cursor: $hover-cursor;
+}
+
+// carousel
+.ant-carousel .slick-dots li button {
+    cursor:  $hover-cursor;
+}
+
+// radio-button-wrapper
+.ant-radio-button-wrapper {
+    cursor:  $hover-cursor;
+}
+
+// collapse
+.ant-collapse {
+    font-family: "MyCustomFont", sans-serif;
+
+    &>.ant-collapse-item >.ant-collapse-header {
+        color: $main-text-color;
+        align-items: center;
+    }
+
+    .ant-collapse-content {
+        color: $main-text-color;
+    }
+
+    .ant-collapse-header-text {
+        font-size: $x-small-font-size;
+    }
+}
+
+// alert
+.ant-alert-info {
+    background-color: $secondary-car-color;
+    color: $main-text-color;
+    font-family: "MyCustomFont", sans-serif;
+    border-color: $main-color;
+
+    .ant-alert-icon {
+        color: $main-color;
+    }
+
+}
+.ant-alert-with-description .ant-alert-message {
+    color: $main-text-color;
+    font-weight: $large-font-weight;
+
+}
+
+// affix
+.ant-affix {
+    z-index: 99;
+}
+
+// drawer
+.ant-drawer .ant-drawer-content {
+    background: $main-car-color;
+    .ant-drawer-title,.ant-drawer-close {
+        color: $main-text-color;
+    }
+}
+
+// tree
+.ant-tree {
+    background: $main-car-color;
+    color: $main-text-color;
+    .ant-tree-node-content-wrapper.ant-tree-node-selected {
+        background-color: $secondary-car-color;
+    }
+    .ant-tree-switcher {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+// radio-group
+.ant-radio-group ,.ant-radio-wrapper{
+    color: $main-text-color;
+    .ant-radio-checked .ant-radio-inner {
+        border-color: $main-color;
+        background-color: $main-color;
+    }
+}

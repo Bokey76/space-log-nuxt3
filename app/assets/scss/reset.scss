@@ -1,0 +1,68 @@
+// 对一些固定标签样式的重设...
+ul {
+    list-style: none; // 去除列表小圆点
+}
+a {
+    text-decoration: none; // 去除a标签下划线
+    color: black; // 更改a标签的默认颜色(蓝色)为全局变量的 $color-text
+}
+html {
+    font-size: 16px;
+}
+@media (max-width: 768px) {
+    html {
+        font-size: 5px !important;
+    }
+}
+p {
+    color: $main-text-color;
+}
+body {
+    /* 定义滚动条整体样式 */
+    &::-webkit-scrollbar {
+        /* 设置滚动条宽度 */
+        width: 5px;
+        /* 设置水平滚动条高度 */
+        height: 8px;
+    }
+
+    /* 滚动条轨道样式 */
+    &::-webkit-scrollbar-track {
+        /* 轨道背景颜色 */
+        background: $main-background-color;
+        /* 圆角 */
+        border-radius: 10px;
+    }
+
+    /* 滚动条滑块样式 */
+    &::-webkit-scrollbar-thumb {
+        /* 滑块颜色 */
+        background-color: $secondary-text-color;
+        /* 圆角 */
+        border-radius: 10px;
+        /* 滑块边框 */
+        border: none;
+    }
+
+    /* 鼠标悬停时，改变滑块颜色 */
+    &::-webkit-scrollbar-thumb:hover {
+        /* 鼠标悬停时滑块颜色 */
+        background-color: $secondary-text-color;
+    }
+
+    /* 可选，水平滚动条的样式 */
+    &::-webkit-scrollbar-horizontal {
+        height: 8px;
+    }
+
+    /* 可选，垂直滚动条的样式 */
+    &::-webkit-scrollbar-vertical {
+        width: 8px;
+    }
+}
+.iconfont {
+    font-size: $medium-font-size;
+}
+p {
+    font-size: $x-small-font-size;
+}

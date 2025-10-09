@@ -1,0 +1,19 @@
+# 忽略宿主机上的 node_modules
+app/node_modules
+app/.output
+app/.nuxt
+app/dist
+app/logs
+
+# 忽略系统和 VCS 文件
+.git
+.gitignore
+.DS_Store
+
+# 忽略本地 npm/yarn 缓存
+npm-debug.log
+yarn-error.log
+
+# 可选：如果你不想复制 Dockerfile 自己进去
+Dockerfile
+docker-compose.yml

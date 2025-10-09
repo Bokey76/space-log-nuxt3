@@ -1,0 +1,9 @@
+{
+  "--main-text-color": "#ffffff",
+  "--secondary-text-color": "#cccccc",
+  "--main-background-color": "#0e0e0e",
+  "--main-car-color": "#161616",
+  "--secondary-car-color": "#181818",
+  "--success-color": "#0085ff",
+  "--info-color": "#71c4ef"
+}

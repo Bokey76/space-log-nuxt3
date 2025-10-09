@@ -1,0 +1,22 @@
+# Nuxt dev/build outputs
+app/.output/
+app/.data/
+app/.nuxt/
+app/.nitro/
+app/.cache/
+app/dist/
+app/.vscode/
+
+# Node dependencies
+app/node_modules/
+
+# Logs
+logs/*
+*.log
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+
