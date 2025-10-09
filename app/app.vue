@@ -1,3 +1,19 @@
+<!--
+  =============================================================================
+  Project: space-log-nuxt3
+  Author: Bokey(github: Bokey76)
+  Created: 2025
+  License: MIT License
+  Description: 
+  本项目开源，欢迎参考、学习和改进。。
+  请尊重作者版权，保留作者信息及本文件中的 LICENSE 注释。
+  欢迎通过 Pull Request 或 Issue 方式提出改进意见，一起让项目更好。
+  如果你喜欢本项目，欢迎点个 Star ⭐ 支持，也欢迎分享和改进。
+  关于作者：https://bokey.space
+  =============================================================================
+-->
+
+
 <script setup>
 import { watch } from 'vue';
 const router = useRouter()
