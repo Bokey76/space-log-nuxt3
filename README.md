@@ -93,11 +93,13 @@ Powered by Peacock · https://github.com/Bokey76
 ### 🧑‍💻 关于作者
 
 <div style="display:flex;flex-direction: column;align-items:center;padding:20px 0;">
-<img src="https://bokey-space.oss-cn-shenzhen.aliyuncs.com/pro/global/my-avatar.png" alt="作者头像" width="200" style="border-radius: 50%;border: 10px solid #161616;" />
+<img src="./app/assets/images/bokey.png" alt="作者头像" width="200" style="border-radius: 50%;border: 10px solid #161616;" />
 <h2 style="margin:10px 0 0">Bokey</h2>
 <p style="font-weight:700;">在世界留下属于自己的痕迹🐾</p>
 </div>
 
 🌐 我的站点：[bokey space](https://bokey.space)
+
 📧 联系方式：参考[bokey space](https://bokey.space)中提供的联系方式
+
 💬 GitHub：https://github.com/Bokey76
