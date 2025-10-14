@@ -32,8 +32,11 @@ const total = useState('total', () => 0)
 const currentPage = useState('currentPage', () => 1)
 const pageSize = useState('pageSize', () => 10)
 // 服务端 - 获取文章列表
-const { data: articleList, error: articleListError } = await useAsyncData('getArticleList', async () =>
-    await api.getArticleListOrderByTime({
+const { data: articleList, error: articleListError } = await useAsyncData('getArticleList', async () => {
+    total.value = 0
+    currentPage.value = 1
+    pageSize.value = 10
+    return await api.getArticleListOrderByTime({
         currentPage: currentPage.value,
         pageSize: pageSize.value
     }).then(res => {
@@ -43,6 +46,7 @@ const { data: articleList, error: articleListError } = await useAsyncData('getAr
         }
         return res.rows
     })
+}
 )
 const getArticleList = () => { // 获取文章列表
     api.getArticleListOrderByTime({

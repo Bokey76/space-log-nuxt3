@@ -8,11 +8,15 @@ const total = useState('total', () => 0)
 const currentPage = useState('currentPage', () => 1)
 const pageSize = useState('pageSize', () => 10)
 // 服务端 - 获取文章列表
-const { data: articleList, error: getArticleListError } = await useAsyncData(`getArticleList-index-${route.params.id}`, async () =>
-    await api.getArticleByTypeId(route.params.id, currentPage.value, pageSize.value).then(res => {
+const { data: articleList, error: getArticleListError } = await useAsyncData(`getArticleList-index-${route.params.id}`, async () => {
+    total.value = 0
+    currentPage.value = 1
+    pageSize.value = 10
+    return await api.getArticleByTypeId(route.params.id, currentPage.value, pageSize.value).then(res => {
         total.value = res.count
         return res.rows
     })
+}
 )
 // 服务端 - 获取类目数据
 const { data: category, error: getCategoryError } = await useAsyncData(`getCategory-index-${route.params.id}`, async () =>

@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue"
 const store = useNuxtStore()
+const route = useRoute()
 const config = useRuntimeConfig();
 definePageMeta({
   layout: 'classics'
@@ -51,11 +52,28 @@ const initEditorPreview = () => { // 初始化md编辑器是否预览
     editorPreview.value = true
   }
 }
-let currentPage = ref(2)
-let pageSize = ref(10) // 页大小
-let total = ref(0) // 总数
-let messageList = ref([])
-let messageListReady = ref(false)
+const total = useState('total', () => 0)
+const currentPage = useState('currentPage', () => route.params.page)
+const pageSize = useState('pageSize', () => 10)
+// 服务端 - 获取留言
+const { data: messageList, error: messageListError } = await useAsyncData('getMessageList', async () => {
+  total.value = 0
+  currentPage.value = route.params.page
+  pageSize.value = 10
+  return await api.getComment({
+    entityType: "Message",
+    currentPage: currentPage.value,
+    pageSize: pageSize.value,
+    order: '[["createTime","DESC"],["like","DESC"]]'
+  }).then(res => {
+    total.value = res.count
+    return res.rows
+  })
+}
+)
+if (messageListError) {
+  console.log(messageListError);
+}
 /**
  * 获取所有留言
  * @param  { Boolean } init 是否初始化(pageSize=10,currentPage=1)，默认false
@@ -64,7 +82,7 @@ let messageListReady = ref(false)
 const getMessageData = (init = false, options = { order: '[["createTime","DESC"],["like","DESC"]]' }) => {
   api.getComment({
     entityType: "Message",
-    currentPage: init ? 1 : currentPage.value++,
+    currentPage: init ? 1 : currentPage.value,
     pageSize: init ? 10 : pageSize.value,
     ...options
   }).then(res => {
@@ -74,7 +92,6 @@ const getMessageData = (init = false, options = { order: '[["createTime","DESC"]
       messageList.value.push(...res.rows)
     }
     total.value = res.count
-    messageListReady.value = true // 已获取内容
   })
 }
 let actionBarShow = ref(false)
@@ -99,6 +116,7 @@ watch(() => messageSorting.value, (newVal) => {
   }
 })
 const getMoreMessage = () => { // 加载更多留言
+  currentPage.value++
   if (utils.isNullOrEmpty(messageSorting.value)) {
     getMessageData()
   } else {
@@ -188,7 +206,7 @@ const currentParentMessageContent = computed(() => {
   }
   if (message?.userId == -1) { // 管理员
     return {
-      userName: store.$state.config['my-name'].content,
+      userName: store.$state.config['my-name']?.content,
       messageContent: message.content
     }
   } else {
@@ -279,7 +297,6 @@ const phoneAdaptation = () => { // 手机端的留言工具栏适配
   }, 100)
 }
 onMounted(() => {
-  getMessageData(true)
   getUserData()
   initEditorPreview()
   window.addEventListener("beforeunload", defaultUnSaveTip); // 监听浏览器关闭和刷新事件，提示还没保存
@@ -319,8 +336,8 @@ onBeforeUnmount(() => {
             <template #icon>
               <FormatPainterOutlined />
             </template>
-            留下痕迹
-          </a-button> -->
+留下痕迹
+</a-button> -->
         </a-space>
         <a-space class="flex md:hidden">
           <a-button class="flex justify-center items-center" @click="messageModelShow = true; phoneAdaptation()">
@@ -332,7 +349,7 @@ onBeforeUnmount(() => {
         </a-space>
       </div>
       <div class="message-card mb-16">
-        <RepeatEmptyPlaceholder :dataReady="messageListReady" :dataShow="messageList.length > 0">
+        <RepeatEmptyPlaceholder :dataReady="Boolean(messageList)" :dataShow="messageList?.length > 0">
           <!-- 父评论 -->
           <div v-for="(message, index) in messageList" :key="message.id" v-motion-fade-visible-once>
             <div class="flex flex-row">
@@ -346,7 +363,7 @@ onBeforeUnmount(() => {
               <div class="md-view-box ml-8 pt-0 flex-1 overflow-hidden">
                 <div class="view-box-top-bar flex items-center justify-between py-4 px-8">
                   <div class="flex items-center message-text">
-                    <h4>{{ message.userId == -1 ? store.$state.config['my-name'].content : message.user?.name }}</h4>
+                    <h4>{{ message.userId == -1 ? store.$state.config['my-name']?.content : message.user?.name }}</h4>
                     <a-tooltip :title="utils.formatDate(message.createTime, true)">
                       <p class="ml-4 cursor-point">{{ utils.formatDateSimple(message.createTime, true) }}</p>
                     </a-tooltip>
@@ -399,7 +416,7 @@ onBeforeUnmount(() => {
                     </a-space>
                   </template>
                   <template #author>
-                    <h4 class="username">{{ childMessage.userId == -1 ? store.$state.config['my-name'].content :
+                    <h4 class="username">{{ childMessage.userId == -1 ? store.$state.config['my-name']?.content :
                       childMessage.user?.name }}</h4>
                   </template>
                   <template #avatar>
@@ -417,7 +434,7 @@ onBeforeUnmount(() => {
                   </template>
                   <template #datetime>
                     <span class="mr-2" v-if="!utils.isNullOrEmpty(childMessage.subUserId)">{{
-                      `@${childMessage.subUserId == -1 ? store.$state.config['my-name'].content :
+                      `@${childMessage.subUserId == -1 ? store.$state.config['my-name']?.content :
                         childMessage.subUser?.name}` }}</span>
                     <a-tooltip :title="utils.formatDate(childMessage.createTime, true)">
                       <span class="cursor-point">{{ utils.formatDateSimple(childMessage.createTime, true) }}</span>
@@ -427,15 +444,17 @@ onBeforeUnmount(() => {
               </div>
               <div class="child-message-parting z-10 absolute h-full top-0 left-64"></div>
             </div>
-            <div class="relative ml-64" v-if="index >= (messageList.length - 1) && index < (total - 1)">
-              <a-button class="add-more-btn absolute flex items-center" shape="round" size="large"
-                @click="getMoreMessage">
-                ➕加载更多
-              </a-button>
+            <div class="relative ml-64"
+              v-if="(index >= (messageList?.length - 1) && index < (total - 1)) && (messageList?.length < total - ((route.params.page - 1) * pageSize))">
+              <a :href="`/message/${Number(currentPage) + 1}`" @click.prevent="getMoreMessage">
+                <a-button class="add-more-btn absolute flex items-center" shape="round" size="large">
+                  ➕加载更多
+                </a-button>
+              </a>
               <!-- 撑开宽度的假按钮 -->
               <a-button class="invisible" size="large">加载更多</a-button>
             </div>
-            <div class="no-more-line pl-44 pt-4" v-else-if="index >= (messageList.length - 1)">到底线啦🌼一起留下痕迹叭</div>
+            <div class="no-more-line pl-44 pt-4" v-else-if="index >= (messageList?.length - 1)">到底线啦🌼一起留下痕迹叭</div>
           </div>
         </RepeatEmptyPlaceholder>
       </div>

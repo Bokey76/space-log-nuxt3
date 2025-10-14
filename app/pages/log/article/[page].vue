@@ -35,8 +35,11 @@ const total = useState('total', () => 0)
 const currentPage = useState('currentPage', () => route.params.page)
 const pageSize = useState('pageSize', () => 10)
 // 服务端 - 获取文章列表
-const { data: articleList, error: articleListError } = await useAsyncData('getArticleList', async () =>
-    await api.getArticleListOrderByTime({
+const { data: articleList, error: articleListError } = await useAsyncData('getArticleList', async () => {
+    total.value = 0
+    currentPage.value = route.params.page
+    pageSize.value = 10
+    return await api.getArticleListOrderByTime({
         currentPage: currentPage.value,
         pageSize: pageSize.value
     }).then(res => {
@@ -46,6 +49,7 @@ const { data: articleList, error: articleListError } = await useAsyncData('getAr
         }
         return res.rows
     })
+}
 )
 const getArticleList = () => { // 获取文章列表
     api.getArticleListOrderByTime({
@@ -86,8 +90,8 @@ const getMore = () => { // 获取更多文章
                 <nuxt-link class="w-full m-6 " v-for="item in articleList" :key="item.id"
                     :to="`/log/article/detail/${item.id}`">
                     <RepeatDataCard class="w-full h-96 overflow-hidden" :data="item"
-                        @click="router.push(`/log/article/detail/${item.id}`)" v-motion :initial="{ opacity: 0, x: 100 }"
-                        :visibleOnce="{
+                        @click="router.push(`/log/article/detail/${item.id}`)" v-motion
+                        :initial="{ opacity: 0, x: 100 }" :visibleOnce="{
                             opacity: 1, x: 0, transition: {
                                 duration: 300,
                             },

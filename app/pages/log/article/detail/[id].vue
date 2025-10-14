@@ -88,10 +88,10 @@ const goTo = (url, $event) => { // 跳转到其他网站
 // #region 操作模块
 let like = ref(false) // 标记是否喜欢
 const likeEvent = () => { // 喜欢文章事件
-    api.likeArticleById(articleData.id).then(res => {
+    api.likeArticleById(articleData.value.id).then(res => {
         if (utils.analysisData(res)) {
             like.value = true
-            articleData.like += 1
+            articleData.value.like += 1
         }
     })
 }

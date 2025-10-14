@@ -222,13 +222,13 @@ onMounted(() => {
                     <a-dropdown v-for="naviFirst in naviData" :key="naviFirst.label">
                         <div>
                             <a href="javascript:;" v-if="naviFirst.children">{{ naviFirst.label }}</a>
-                            <a href="javascript:;" v-else @click="router.push(naviFirst.path)">{{ naviFirst.label }}</a>
+                            <nuxt-link :to="naviFirst.path" v-else >{{ naviFirst.label }}</nuxt-link>
                         </div>
                         <template v-if="naviFirst.children" #overlay>
                             <a-menu>
                                 <a-menu-item v-for="naviSecond in naviFirst.children" :key="naviSecond.path">
-                                    <a href="javascript:;" class="text-3xl p-8" @click="router.push(naviSecond.path)">{{
-                                        naviSecond.label }}</a>
+                                    <nuxt-link :to="naviSecond.path" class="text-3xl p-8">{{
+                                        naviSecond.label }}</nuxt-link>
                                 </a-menu-item>
                             </a-menu>
                         </template>
