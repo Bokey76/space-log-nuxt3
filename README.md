@@ -76,6 +76,42 @@ pm2 start ecosystem.config.js --env pro --update-env # 生产环境启动
 ```
 ps: 我本人比较少用`pm2`来启动开发，不知道会不会遇到问题，`beta`环境和`pro`环境部署应该没什么问题，但热重载和开发就不知道会不会有问题
 
+### ✍️ 项目会用到的数据库配置
+
+本项目在访问前会调用接口读取数据库的配置存储在`store.config`中，不配置也不会报错，只是会缺少内容，建议在后台（后台、后端均已开源，具体查看我的github仓库）添加这些内容会比较方便一些，目前所需的配置项：
+
+| 数据名称 | 数据接口字段 | 数据类型 | 数据格式示例 |
+|---------|-------------|---------|-------------|
+| 头像 | my-avatar | STRING | "https://bokey-space/my-avatar.png" |
+| 职业成长线 | career-line | JSON | [{"icon": "🎓", "time": "2020-09-01", "label": "翻开崭新的篇章，第一次进入母校"},  ...] |
+| 技能列表 | skill-item | JSON | [  { "type": "parting", "title": "Stack" },{"url": "https://vuejs.org/", "name": "Vue", "type": "tag", "color": "#42b983", "iconClass": "icon-vuejs"}, ...] |
+| 默认图片 | not-found-image | STRING | "https://bokey-space/not-found.png" |
+| 关于我的标签云 | about-me-cloud-tags | STRING | "<a href=\"#\">00后程序员💻</a>\n<a href=\"#\">INFJ🧩</a>\n<a href=\"#\">爱🐣</a>..." |
+| 留言轮播 | message-slide | JSON | [{"text": ["常常记录，<span class=\"emphasize\">留下痕迹</span>", "Bokey正在<span class=\"emphasize\">努力进步中💪</span>"], "image": "https://bokey-space/grassland.png", "title": "我的日常痕迹📡"}] |
+| 关于我轮播 | about-me-slide | JSON | [{"text": ["建立本站的初衷希望记录自己的成长🙂", "🌐同时认识更多志同道合的朋友..."], "image": "https://bokey-space.oss-cn-shenzhen.aliyuncs.com/pro/global/DesertQuest.jpg", "title": "设站目的"}, ...] |
+| 我的名字 | my-name | STRING | "Bokey" |
+| 表情列表 | emojis | JSON | ["😀", "😃", "😁", "🥳", "😆", ...] |
+| 感想 | final-thoughts | JSON | ["希望我们都在这个世界<span class=\"emphasize\">留下属于自己的痕迹</span>🐾", "怎么样都会有遗憾<br/><span class=\"emphasize\">把决定权留给自己❤️‍🔥</span>", ...] |
+| 图标样式链接 | icon-href | STRING | "https://at.alicdn.com/t/c/font_hopf.css" |
+
+#### 🧩 动态图标样式链接说明
+
+其中，**比较重要的是`图标样式链接`**，项目会在初始化的时候全局获取这个连接来加载他的图标，我用的是[阿里的图标库](https://www.iconfont.cn/)，把图标添加到项目里，然后使用font class的方式，可以生成得到类似：`//at.alicdn.com/t/c/font_66666_66666hopf.css`的字符串，加上`https:`前缀填入`icon-href`配置项的`content`就ok了。
+
+我这样写的目的是为了我可以动态替换添加图标，如果你不需要，可以自行修改
+
+#### 👀 感想配置说明
+
+感想配置中添加`emphasize`类，客户端会添加一个下划线来重点标记
+
+#### 表情列表说明
+
+表情列表可以配置前台后台（好像都有动态获取，忘记了😅，有需要检查一下）的用户emoji列表
+
+#### 技能列表说明
+
+技能列表中`type`是`parting`会渲染一个分割线和`title`。`type`是`tag`会渲染一个可以点击跳转的技能小按钮，可配置颜色和icon
+
 ### ⚖️ 开源协议
 
 本项目基于 MIT License 开源。
