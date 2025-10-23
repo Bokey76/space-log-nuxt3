@@ -8,7 +8,7 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 let mdContent = ref("");
 defineExpose({ mdContent }) // 暴露md编辑器内容给父组件，读取用这个读取
-const emojis = store.$state.config['emojis'].content
+const emojis = store.$state.config['emojis']?.content
 const props = defineProps({
     content: {
         type: String,

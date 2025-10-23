@@ -138,7 +138,7 @@ const submitFriendMsg = () => { // 提交朋友信息
             <p class="py-1">📍名称：Bokey Space</p>
             <p class="py-1">👀简介：留下自己的痕迹</p>
             <p class="py-1">🔗链接：https://bokey.space/</p>
-            <p class="py-1">📌头像：{{ store.$state.config['my-avatar'].content }}</p>
+            <p class="py-1">📌头像：{{ store.$state.config['my-avatar']?.content }}</p>
           </template>
           <template #icon>
             <ApiOutlined />
