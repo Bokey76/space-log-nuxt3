@@ -116,32 +116,32 @@ onBeforeUnmount(() => {
     <!-- 技能 / 生涯 -->
     <div class="flex flex-wrap">
       <div class="w-full lg:w-1/2 pr-0 lg:pr-4 my-4">
-        <a-card class="w-full card overflow-hidden flex" style="height: 60rem;" v-motion-slide-visible-left>
-          <span class="card-title">技能</span>
-          <div
-            class="scroll-hidden h-full w-full pb-40 my-8 flex gap-8 flex-wrap justify-start content-start flex-1 overflow-y-scroll">
-            <div v-for="item in store.$state.config['skill-item']?.content" :key="item.name"
-              :class="item.type == 'parting' ? 'w-full' : ''">
-              <a-tag class="tag py-4 p-8 flex justify-center items-center" v-if="item.type == 'tag'"
-                @click="goTo(item.url, $event)" :color="item.color">
-                <template #icon>
-                  <i class="mr-4" :class="`iconfont ${item.iconClass}`"></i>
-                </template>
-                {{ item.name }}
-              </a-tag>
-              <div v-else-if="item.type == 'parting'" class="w-full">
-                <a-divider orientation="left">{{ item.title }}</a-divider>
+        <a-card class="card"  v-motion-slide-visible-left>
+            <span class="card-title">技能</span>
+            <div class="scroll-hidden w-full max-h-[50rem] my-8 flex flex-wrap justify-start content-start flex-1 overflow-y-scroll">
+              <div v-for="item in store.$state.config['skill-item']?.content" :key="item.name"
+                :class="item.type == 'parting' ? 'w-full' : ''">
+                <a-tag class="tag py-4 mx-4 my-4 p-8 flex justify-center items-center" v-if="item.type == 'tag'"
+                  @click="goTo(item.url, $event)" :color="item.color">
+                  <template #icon>
+                    <i class="mr-4 !text-4xl" :class="`iconfont ${item.iconClass}`"></i>
+                  </template>
+                  {{ item.name }}
+                </a-tag>
+                <div v-else-if="item.type == 'parting'" class="w-full">
+                  <div class="skill-group-title relative my-6 py-2">
+                    <span class="skill-group-title-text pl-8">{{ item.title }}</span>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
         </a-card>
       </div>
       <div class="w-full lg:w-1/2 pl-0 lg:pl-4 my-4">
-        <a-card class="w-full card overflow-hidden flex" style="height: 60rem;"
-          v-motion-slide-visible-right>
+        <a-card class="w-full card overflow-hidden flex" v-motion-slide-visible-right>
           <span class="card-title">生涯</span>
           <div
-            class="scroll-hidden h-full w-full my-8 flex gap-8 flex-wrap justify-start content-start flex-1 overflow-y-scroll">
+            class="scroll-hidden h-full w-full max-h-[50rem] my-8 flex gap-8 flex-wrap justify-start content-start flex-1 overflow-y-scroll">
             <a-timeline pending="加载中..." mode="alternate" reverse class="py-8">
               <a-timeline-item class="timeline-item"
                 v-for="(item, index) in store.$state.config['career-line']?.content" :key="index">
@@ -363,9 +363,8 @@ onBeforeUnmount(() => {
       font-size: $small-font-size;
       cursor: $hover-cursor;
 
-
       &:hover {
-        font-size: $medium-font-size;
+        transform: scale(1.1);
       }
     }
 
@@ -419,6 +418,23 @@ onBeforeUnmount(() => {
       display: none;
       /* Chrome, Safari, Opera */
     }
+  }
+
+  // 技能分组标题（不走 divider / 不走拉线）
+  .skill-group-title::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(96, 221, 142, 0.95), rgb(36 111 52 / 55%));
+  }
+
+  .skill-group-title-text {
+    font-size: $x-small-font-size;
   }
 
 }

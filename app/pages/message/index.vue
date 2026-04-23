@@ -244,7 +244,6 @@ const messageImageUpload = async (files, callback) => { // 留言图片上传
         formData.append("path", `/image/messageImage/`); // 上传到oss的路径
         formData.append("uuidOrNot", true); // 上传到oss的路径
         api.uploadImage(formData).then((res) => { // 上传oss图片
-          console.log(res);
           if (utils.analysisData(res)) {
             uploadUnSaveImagesPath.value.push(res.data.path); // 记录上传的未保存图片路径
             rev(res);
